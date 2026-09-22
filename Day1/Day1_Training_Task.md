@@ -1,8 +1,8 @@
-# AI Fluency Training – Day 1
+ AI Fluency Training – Day 1
 
-## 1. Observations
+ 1. Observations
 
-### Comparison of the Three Systems
+ Comparison of the Three Systems
 
 | Criterion | Chatbot | Rule-Based Workflow | AI Agent |
 |---|---|---|---|
@@ -18,9 +18,9 @@
 | One weakness | Can lack private data and may give an uncertain answer confidently | Rigid and cannot handle new questions automatically | Can use unnecessary steps or stop at the step limit |
 | Suitable use case | General student questions | Fixed college fee/office queries | Questions involving lookup and calculation |
 
-### Actual Results from My Run
+ Actual Results from My Run
 
-#### Rule-Based Workflow
+ Rule-Based Workflow
 
 For the fixed questions, the workflow gave:
 
@@ -29,7 +29,7 @@ For the fixed questions, the workflow gave:
 - DS303 is ₹3,000 more expensive than CS101
 - For the welcome message question, it returned: `I can answer only the fixed course questions.`
 
-#### AI Agent
+ AI Agent
 
 The agent used the tools correctly for the fixed questions.
 
@@ -59,7 +59,7 @@ step 3: calculator({'expression': '15000-12000'}) -> 3000
 
 For Question 4, the agent answered directly and did not call a tool.
 
-#### Challenge Question
+Challenge Question
 
 Question:
 
@@ -89,26 +89,25 @@ So the agent found:
 It did the calculations, but it did not finish with a final answer because the `max_steps` limit was reached.
 
 ---
+ 2. Discussion Questions
 
-## 2. Discussion Questions
-
-### 1. The chatbot gave a confident but wrong fee. Why is that more dangerous than replying "I don't know"?
+ 1. The chatbot gave a confident but wrong fee. Why is that more dangerous than replying "I don't know"?
 
 A confident wrong answer can look correct to the user. In a fee-related case, the user may trust it and make a wrong financial decision. Saying "I don't know" makes the lack of information clear.
 
-### 2. The workflow was always correct for questions 1 and 2. Why might a finance office still prefer it over the agent?
+ 2. The workflow was always correct for questions 1 and 2. Why might a finance office still prefer it over the agent?
 
 A workflow follows fixed rules, so the output is predictable for the questions covered by those rules. A finance office may prefer this for fixed fee calculations because the logic is directly controlled by the programmer.
 
-### 3. The agent's steps can change between runs. What problems would that cause in a real product?
+ 3. The agent's steps can change between runs. What problems would that cause in a real product?
 
 Different steps can make the system harder to test and debug. It can also increase response time and sometimes lead to unnecessary tool calls or incomplete answers.
 
-### 4. Design a system that uses a workflow for common questions and an agent for the rest. Where would you draw the line?
+ 4. Design a system that uses a workflow for common questions and an agent for the rest. Where would you draw the line?
 
 I would use the workflow first for common and clearly defined questions such as course fees, application status, and fixed rules. Questions that do not match those rules or need multiple steps can be sent to the agent.
 
-### 5. Which parts of `agent.py` are the LLM, the tools, and the loop?
+ 5. Which parts of `agent.py` are the LLM, the tools, and the loop?
 
 - **LLM:** `client.chat.completions.create(...)`
 - **Tools:** `get_course_fee` and `calculator`
@@ -116,7 +115,7 @@ I would use the workflow first for common and clearly defined questions such as 
 
 The LLM decides the next action, Python executes the selected tool, and the result is sent back to the LLM until it gives a final answer or reaches the step limit.
 
-## 3. Conclusion
+Conclusion
 
 This experiment showed the difference between a plain chatbot, a fixed rule-based workflow, and a tool-using AI agent.
 
